@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     func sampling() {
         for _ in 0..<self.testCount {
-            let _ = self.testString.unescapeHTMLLikeObjC
+//            let _ = self.testString.unescapeHTMLLikeObjC
         }
         for _ in 0..<self.testCount {
             let _ = self.testString.unescapeHTML

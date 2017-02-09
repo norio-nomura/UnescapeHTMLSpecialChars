@@ -46,7 +46,7 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
     }
     
     func testImp() {
-        print("&lt;this &amp; that&gt;&#65;&#x42;&#X43;".unescapeHTMLLikeObjC)
+        print("&lt;this &amp; that&gt;&#65;&#x42;&#X43;".unescapeHTML)
     }
     
     
