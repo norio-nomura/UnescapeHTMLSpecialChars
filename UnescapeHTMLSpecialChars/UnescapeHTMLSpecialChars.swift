@@ -312,82 +312,16 @@ func getTable(length: Int) -> [HTMLEscapeMap]? {
     }
 }
 
-extension String {
-    public var unescapeHTML_dev: String {
-        var unescapingString = self
-        
-        let startIndex = unescapingString.startIndex
-        var terminal = unescapingString.characters.count
-        
-        let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
-        repeat {
-            //            print(terminal)
-            //            print((unescapingString as NSString).substring(with: NSMakeRange(0, terminal)))
-            let rangeOfAmpObjC = (unescapingString as NSString).range(of: "&", options: .backwards, range: NSMakeRange(0, terminal))
-            if rangeOfAmpObjC.location == NSNotFound {
-                break
-            }
-            //            print((unescapingString as NSString).substring(with: NSMakeRange(rangeOfAmpObjC.location, terminal - rangeOfAmpObjC.location)))
-            let rangeOfSemicollonObjC = (unescapingString as NSString).range(of: ";", options: [], range: NSMakeRange(rangeOfAmpObjC.location, terminal - rangeOfAmpObjC.location))
-            if rangeOfSemicollonObjC.location == NSNotFound {
-                terminal = rangeOfAmpObjC.location - 1
-                continue
-            }
-            //            guard let rangeOfAmp = unescapingString.range(of: "&", options: .backwards, range: startIndex..<endIndex, locale: nil) else { break }
-            //            guard let rangeOfSemicollon = unescapingString.range(of: ";", options: [], range: rangeOfAmp.lowerBound..<endIndex, locale: nil) else {
-            //                endIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: -1)
-            //                continue
-            //            }
-            
-            let rangeOfAmp = unescapingString.index(startIndex, offsetBy: rangeOfAmpObjC.location)..<unescapingString.index(startIndex, offsetBy: rangeOfAmpObjC.location+1)
-            let rangeOfSemicollon = unescapingString.index(startIndex, offsetBy: rangeOfSemicollonObjC.location)..<unescapingString.index(startIndex, offsetBy: rangeOfSemicollonObjC.location+1)
-            
-            let prefixChar1 = unescapingString.substring(with: rangeOfAmp.lowerBound..<unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 2))
-            
-            if prefixChar1 == "&#" {
-                let prefixChar2 = unescapingString.substring(with: rangeOfAmp.lowerBound..<unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 3))
-                if prefixChar2 == "&#x" || prefixChar2 == "&#X" {
-                    let startIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 3)
-                    let endIndex = unescapingString.index(rangeOfSemicollon.lowerBound, offsetBy: 0)
-                    let hexString = unescapingString.substring(with: startIndex..<endIndex)
-                    if let charCode = UInt16(hexString, radix: 16) {
-                        let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
-                        buffer.pointee = charCode
-                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-                            unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: c)
-                        }
-                    }
-                } else {
-                    let startIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 2)
-                    let endIndex = unescapingString.index(rangeOfSemicollon.lowerBound, offsetBy: 0)
-                    let decimalString = unescapingString.substring(with: startIndex..<endIndex)
-                    if let charCode = UInt16(decimalString) {
-                        buffer.pointee = charCode
-                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-                            unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: c)
-                        }
-                    }
-                }
-            } else {
-                let startIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 1)
-                let endIndex = unescapingString.index(rangeOfSemicollon.lowerBound, offsetBy: 0)
-                let name = unescapingString.substring(with: startIndex..<endIndex)
-                if let table = getTable(length: name.characters.count) {
-                    if let index = table.index(where: {$0.name == name}) {
-                        unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: table[index].character)
-                    }
-                }
-            }
-            terminal = rangeOfAmpObjC.location
-            if terminal <= 0 {
-                break
-            }
-            //            endIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: -1)
-        } while true
-        buffer.deallocate(capacity: 1)
-        return unescapingString
+func getCharacter(name: String) -> String? {
+    if let table = getTable(length: name.characters.count) {
+        if let index = table.index(where: {$0.name == name}) {
+            return table[index].character
+        }
     }
-    
+    return nil
+}
+
+extension String {
     public var unescapeHTML: String {
         var unescapingString = self
         
@@ -432,10 +366,8 @@ extension String {
                 let startIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 1)
                 let endIndex = unescapingString.index(rangeOfSemicollon.lowerBound, offsetBy: 0)
                 let name = unescapingString.substring(with: startIndex..<endIndex)
-                if let table = getTable(length: name.characters.count) {
-                    if let index = table.index(where: {$0.name == name}) {
-                        unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: table[index].character)
-                    }
+                if let character = getCharacter(name: name) {
+                    unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: character)
                 }
             }
             endIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 0)
@@ -445,6 +377,55 @@ extension String {
     }
     
     public var unescapeHTMLLikeObjC: String {
+        let unescapingString = NSMutableString(string: self)
+        
+        var previousAmpLocation = unescapingString.length
+        
+        let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
+        repeat {
+            let rangeOfAmp = unescapingString.range(of: "&", options: .backwards, range: NSMakeRange(0, previousAmpLocation))
+            if rangeOfAmp.location == NSNotFound { break }
+            let rangeOfSemiColon = unescapingString.range(of: ";", options: [], range: NSMakeRange(rangeOfAmp.location, previousAmpLocation - rangeOfAmp.location))
+            previousAmpLocation = rangeOfAmp.location
+            if rangeOfSemiColon.location == NSNotFound {
+                continue
+            }
+            let rangeToBeReplaced = NSMakeRange(rangeOfAmp.location, rangeOfSemiColon.location - rangeOfAmp.location + 1)
+            let prefix = unescapingString.character(at: rangeOfAmp.location + 1)
+            if prefix == 35 {
+                let prefixOfHex = unescapingString.character(at: rangeOfAmp.location + 2)
+                if prefixOfHex == 120 || prefixOfHex == 88 {
+                    let rangeOfHex = NSMakeRange(rangeOfAmp.location + 3, rangeOfSemiColon.location - rangeOfAmp.location - 3)
+                    let hexString = unescapingString.substring(with: rangeOfHex)
+                    if let charCode = UInt16(hexString, radix: 16) {
+                        buffer.pointee = charCode
+                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
+                            unescapingString.replaceCharacters(in: rangeToBeReplaced, with: c)
+                        }
+                    }
+                } else {
+                    let rangeOfDecimal = NSMakeRange(rangeOfAmp.location + 2, rangeOfSemiColon.location - rangeOfAmp.location - 2)
+                    let decimalString = unescapingString.substring(with: rangeOfDecimal)
+                    if let charCode = UInt16(decimalString) {
+                        buffer.pointee = charCode
+                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
+                            unescapingString.replaceCharacters(in: rangeToBeReplaced, with: c)
+                        }
+                    }
+                }
+            } else {
+                let rangeOfName = NSMakeRange(rangeOfAmp.location + 1, rangeOfSemiColon.location - rangeOfAmp.location - 1)
+                let name = unescapingString.substring(with: rangeOfName)
+                if let character = getCharacter(name: name) {
+                    unescapingString.replaceCharacters(in: rangeToBeReplaced, with: character)
+                }
+            }
+        } while true
+        buffer.deallocate(capacity: 1)
+        return unescapingString as String
+    }
+    
+    public var unescapeHTMLLikeObjC2: String {
         var finalString: NSMutableString = NSMutableString(string: self)
         var range = finalString.range(of: "&", options: .backwards)
         var terminal = finalString.length

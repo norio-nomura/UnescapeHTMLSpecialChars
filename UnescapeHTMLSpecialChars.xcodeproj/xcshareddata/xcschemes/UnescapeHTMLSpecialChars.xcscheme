@@ -79,15 +79,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "149EACD31E4B783C00E54BE0"
-            BuildableName = "UnescapeHTMLSpecialChars.framework"
-            BlueprintName = "UnescapeHTMLSpecialChars"
+            BlueprintIdentifier = "149EACF31E4B795500E54BE0"
+            BuildableName = "testHost.app"
+            BlueprintName = "testHost"
             ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
