@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "149EACDC1E4B783C00E54BE0"
+               BuildableName = "UnescapeHTMLSpecialCharsTests.xctest"
+               BlueprintName = "UnescapeHTMLSpecialCharsTests"
+               ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

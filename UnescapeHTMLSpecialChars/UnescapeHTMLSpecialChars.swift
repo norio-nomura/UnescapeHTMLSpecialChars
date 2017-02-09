@@ -319,10 +319,31 @@ extension String {
         let startIndex = unescapingString.startIndex
         var endIndex = unescapingString.endIndex
         
+        let length = unescapingString.characters.count
+        var terminal = unescapingString.characters.count
+        
         let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
         repeat {
-            guard let rangeOfAmp = unescapingString.range(of: "&", options: .backwards, range: startIndex..<endIndex, locale: nil) else { break }
-            guard let rangeOfSemicollon = unescapingString.range(of: ";", options: [], range: rangeOfAmp.lowerBound..<endIndex, locale: nil) else { continue }
+//            print(terminal)
+//            print((unescapingString as NSString).substring(with: NSMakeRange(0, terminal)))
+            let rangeOfAmpObjC = (unescapingString as NSString).range(of: "&", options: .backwards, range: NSMakeRange(0, terminal))
+            if rangeOfAmpObjC.location == NSNotFound {
+                break
+            }
+//            print((unescapingString as NSString).substring(with: NSMakeRange(rangeOfAmpObjC.location, terminal - rangeOfAmpObjC.location)))
+            let rangeOfSemicollonObjC = (unescapingString as NSString).range(of: ";", options: [], range: NSMakeRange(rangeOfAmpObjC.location, terminal - rangeOfAmpObjC.location))
+            if rangeOfSemicollonObjC.location == NSNotFound {
+                terminal = rangeOfAmpObjC.location - 1
+                continue
+            }
+//            guard let rangeOfAmp = unescapingString.range(of: "&", options: .backwards, range: startIndex..<endIndex, locale: nil) else { break }
+//            guard let rangeOfSemicollon = unescapingString.range(of: ";", options: [], range: rangeOfAmp.lowerBound..<endIndex, locale: nil) else {
+//                endIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: -1)
+//                continue
+//            }
+            
+            let rangeOfAmp = unescapingString.index(startIndex, offsetBy: rangeOfAmpObjC.location)..<unescapingString.index(startIndex, offsetBy: rangeOfAmpObjC.location+1)
+            let rangeOfSemicollon = unescapingString.index(startIndex, offsetBy: rangeOfSemicollonObjC.location)..<unescapingString.index(startIndex, offsetBy: rangeOfSemicollonObjC.location+1)
             
             let prefixChar1 = unescapingString.substring(with: rangeOfAmp.lowerBound..<unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 2))
             
@@ -360,7 +381,11 @@ extension String {
                     }
                 }
             }
-            endIndex = rangeOfAmp.lowerBound
+            terminal = rangeOfAmpObjC.location
+            if terminal <= 0 {
+                break
+            }
+//            endIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: -1)
         } while true
         buffer.deallocate(capacity: 1)
         return unescapingString

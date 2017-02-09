@@ -25,7 +25,7 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
     }
     
     func testExample() {
-        print(testString.escapeHTML())
+        print(testString.unescapeHTML)
         print(testString.gtm_stringByUnescapingFromHTML())
     }
     
@@ -106,18 +106,18 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
             (buffer + i).pointee = chars[i]
         }
         guard let testString = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * chars.count, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) else { XCTFail(); return }
-        XCTAssert(string.escapeHTML() == testString)
-        XCTAssert("&#65;&#x42;&#X43;".escapeHTML() == "ABC", "HTML unescaping failed")
+        XCTAssert(string.unescapeHTML == testString)
+        XCTAssert("&#65;&#x42;&#X43;".unescapeHTML == "ABC", "HTML unescaping failed")
         XCTAssert("" == "", "HTML unescaping failed")
-        XCTAssert("&#65;&Bang;&#X43;".escapeHTML() == "A&Bang;C", "HTML unescaping failed")
-        XCTAssert("&#65&Bang;&#X43;".escapeHTML() == "&#65&Bang;C", "HTML unescaping failed")
-        XCTAssert("&#65;&Bang;&#X43".escapeHTML() == "A&Bang;&#X43", "HTML unescaping failed")
-        XCTAssert("&#65A;".escapeHTML() == "&#65A;", "HTML unescaping failed")
-        XCTAssert("&".escapeHTML() == "&", "HTML unescaping failed")
-        XCTAssert("&;".escapeHTML() == "&;", "HTML unescaping failed")
-        XCTAssert("&x;".escapeHTML() == "&x;", "HTML unescaping failed")
-        XCTAssert("&X;".escapeHTML() == "&X;", "HTML unescaping failed")
-        XCTAssert(";".escapeHTML() == ";", "HTML unescaping failed")
-        XCTAssert("&lt;this &amp; that&gt;".escapeHTML() == "<this & that>", "HTML unescaping failed")
+        XCTAssert("&#65;&Bang;&#X43;".unescapeHTML == "A&Bang;C", "HTML unescaping failed")
+        XCTAssert("&#65&Bang;&#X43;".unescapeHTML == "&#65&Bang;C", "HTML unescaping failed")
+        XCTAssert("&#65;&Bang;&#X43".unescapeHTML == "A&Bang;&#X43", "HTML unescaping failed")
+        XCTAssert("&#65A;".unescapeHTML == "&#65A;", "HTML unescaping failed")
+        XCTAssert("&".unescapeHTML == "&", "HTML unescaping failed")
+        XCTAssert("&;".unescapeHTML == "&;", "HTML unescaping failed")
+        XCTAssert("&x;".unescapeHTML == "&x;", "HTML unescaping failed")
+        XCTAssert("&X;".unescapeHTML == "&X;", "HTML unescaping failed")
+        XCTAssert(";".unescapeHTML == ";", "HTML unescaping failed")
+        XCTAssert("&lt;this &amp; that&gt;".unescapeHTML == "<this & that>", "HTML unescaping failed")
     }
 }
