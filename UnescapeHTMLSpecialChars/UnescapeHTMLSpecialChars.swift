@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HtmlCode {
+struct HTMLEscapeMap {
     let name: String
     let character: String
     init(_ s: String, _ c: String) {
@@ -17,326 +17,389 @@ struct HtmlCode {
     }
 }
 
-let map2: [HtmlCode] = [
-    HtmlCode("Mu", "Μ"),
-    HtmlCode("Nu", "Ν"),
-    HtmlCode("Xi", "Ξ"),
-    HtmlCode("Pi", "Π"),
-    HtmlCode("mu", "μ"),
-    HtmlCode("nu", "ν"),
-    HtmlCode("xi", "ξ"),
-    HtmlCode("pi", "π"),
-    HtmlCode("ni", "∋"),
-    HtmlCode("or", "∨"),
-    HtmlCode("ne", "≠"),
-    HtmlCode("le", "≤"),
-    HtmlCode("ge", "≥"),
-    HtmlCode("lt", "<"),
-    HtmlCode("gt", ">"),
-]
-let map4: [HtmlCode] = [
-    HtmlCode("nbsp", " "),
-    HtmlCode("cent", "¢"),
-    HtmlCode("sect", "§"),
-    HtmlCode("copy", "©"),
-    HtmlCode("ordf", "ª"),
-    HtmlCode("macr", "¯"),
-    HtmlCode("sup2", "²"),
-    HtmlCode("sup3", "³"),
-    HtmlCode("para", "¶"),
-    HtmlCode("sup1", "¹"),
-    HtmlCode("ordm", "º"),
-    HtmlCode("Auml", "Ä"),
-    HtmlCode("Euml", "Ë"),
-    HtmlCode("Iuml", "Ï"),
-    HtmlCode("Ouml", "Ö"),
-    HtmlCode("Uuml", "Ü"),
-    HtmlCode("auml", "ä"),
-    HtmlCode("euml", "ë"),
-    HtmlCode("iuml", "ï"),
-    HtmlCode("ouml", "ö"),
-    HtmlCode("uuml", "ü"),
-    HtmlCode("yuml", "ÿ"),
-    HtmlCode("fnof", "ƒ"),
-    HtmlCode("Beta", "Β"),
-    HtmlCode("Zeta", "Ζ"),
-    HtmlCode("Iota", "Ι"),
-    HtmlCode("beta", "β"),
-    HtmlCode("zeta", "ζ"),
-    HtmlCode("iota", "ι"),
-    HtmlCode("bull", "•"),
-    HtmlCode("real", "ℜ"),
-    HtmlCode("larr", "←"),
-    HtmlCode("uarr", "↑"),
-    HtmlCode("rarr", "→"),
-    HtmlCode("darr", "↓"),
-    HtmlCode("harr", "↔"),
-    HtmlCode("lArr", "⇐"),
-    HtmlCode("uArr", "⇑"),
-    HtmlCode("rArr", "⇒"),
-    HtmlCode("dArr", "⇓"),
-    HtmlCode("hArr", "⇔"),
-    HtmlCode("part", "∂"),
-    HtmlCode("isin", "∈"),
-    HtmlCode("prod", "∏"),
-    HtmlCode("prop", "∝"),
-    HtmlCode("cong", "≅"),
-    HtmlCode("nsub", "⊄"),
-    HtmlCode("sube", "⊆"),
-    HtmlCode("supe", "⊇"),
-    HtmlCode("perp", "⊥"),
-    HtmlCode("sdot", "⋅"),
-    HtmlCode("lang", "〈"),
-    HtmlCode("rang", "〉"),
-    HtmlCode("quot", "\""),
-    HtmlCode("Yuml", "Ÿ"),
-    HtmlCode("circ", "ˆ"),
-    HtmlCode("ensp", " "),
-    HtmlCode("emsp", " "),
-    HtmlCode("zwnj", "‌"),
-    HtmlCode("euro", "€"),
-]
-let map5: [HtmlCode] = [
-    HtmlCode("iexcl", "¡"),
-    HtmlCode("pound", "£"),
-    HtmlCode("laquo", "«"),
-    HtmlCode("acute", "´"),
-    HtmlCode("micro", "µ"),
-    HtmlCode("cedil", "¸"),
-    HtmlCode("raquo", "»"),
-    HtmlCode("Acirc", "Â"),
-    HtmlCode("Aring", "Å"),
-    HtmlCode("AElig", "Æ"),
-    HtmlCode("Ecirc", "Ê"),
-    HtmlCode("Icirc", "Î"),
-    HtmlCode("Ocirc", "Ô"),
-    HtmlCode("times", "×"),
-    HtmlCode("Ucirc", "Û"),
-    HtmlCode("THORN", "Þ"),
-    HtmlCode("szlig", "ß"),
-    HtmlCode("acirc", "â"),
-    HtmlCode("aring", "å"),
-    HtmlCode("aelig", "æ"),
-    HtmlCode("ecirc", "ê"),
-    HtmlCode("icirc", "î"),
-    HtmlCode("ocirc", "ô"),
-    HtmlCode("ucirc", "û"),
-    HtmlCode("thorn", "þ"),
-    HtmlCode("Alpha", "Α"),
-    HtmlCode("Gamma", "Γ"),
-    HtmlCode("Delta", "Δ"),
-    HtmlCode("Theta", "Θ"),
-    HtmlCode("Kappa", "Κ"),
-    HtmlCode("Sigma", "Σ"),
-    HtmlCode("Omega", "Ω"),
-    HtmlCode("alpha", "α"),
-    HtmlCode("gamma", "γ"),
-    HtmlCode("delta", "δ"),
-    HtmlCode("theta", "θ"),
-    HtmlCode("kappa", "κ"),
-    HtmlCode("sigma", "σ"),
-    HtmlCode("omega", "ω"),
-    HtmlCode("upsih", "ϒ"),
-    HtmlCode("prime", "′"),
-    HtmlCode("Prime", "″"),
-    HtmlCode("oline", "‾"),
-    HtmlCode("frasl", "⁄"),
-    HtmlCode("image", "ℑ"),
-    HtmlCode("trade", "™"),
-    HtmlCode("crarr", "↵"),
-    HtmlCode("exist", "∃"),
-    HtmlCode("empty", "∅"),
-    HtmlCode("nabla", "∇"),
-    HtmlCode("notin", "∉"),
-    HtmlCode("minus", "−"),
-    HtmlCode("radic", "√"),
-    HtmlCode("infin", "∞"),
-    HtmlCode("asymp", "≈"),
-    HtmlCode("equiv", "≡"),
-    HtmlCode("oplus", "⊕"),
-    HtmlCode("lceil", "⌈"),
-    HtmlCode("rceil", "⌉"),
-    HtmlCode("clubs", "♣"),
-    HtmlCode("diams", "♦"),
-    HtmlCode("OElig", "Œ"),
-    HtmlCode("oelig", "œ"),
-    HtmlCode("tilde", "˜"),
-    HtmlCode("ndash", "–"),
-    HtmlCode("mdash", "—"),
-    HtmlCode("lsquo", "‘"),
-    HtmlCode("rsquo", "’"),
-    HtmlCode("sbquo", "‚"),
-    HtmlCode("ldquo", "“"),
-    HtmlCode("rdquo", "”"),
-    HtmlCode("bdquo", "„"),
-]
-let map6: [HtmlCode] = [
-    HtmlCode("curren", "¤"),
-    HtmlCode("brvbar", "¦"),
-    HtmlCode("plusmn", "±"),
-    HtmlCode("middot", "·"),
-    HtmlCode("frac14", "¼"),
-    HtmlCode("frac12", "½"),
-    HtmlCode("frac34", "¾"),
-    HtmlCode("iquest", "¿"),
-    HtmlCode("Agrave", "À"),
-    HtmlCode("Aacute", "Á"),
-    HtmlCode("Atilde", "Ã"),
-    HtmlCode("Ccedil", "Ç"),
-    HtmlCode("Egrave", "È"),
-    HtmlCode("Eacute", "É"),
-    HtmlCode("Igrave", "Ì"),
-    HtmlCode("Iacute", "Í"),
-    HtmlCode("Ntilde", "Ñ"),
-    HtmlCode("Ograve", "Ò"),
-    HtmlCode("Oacute", "Ó"),
-    HtmlCode("Otilde", "Õ"),
-    HtmlCode("Oslash", "Ø"),
-    HtmlCode("Ugrave", "Ù"),
-    HtmlCode("Uacute", "Ú"),
-    HtmlCode("Yacute", "Ý"),
-    HtmlCode("agrave", "à"),
-    HtmlCode("aacute", "á"),
-    HtmlCode("atilde", "ã"),
-    HtmlCode("ccedil", "ç"),
-    HtmlCode("egrave", "è"),
-    HtmlCode("eacute", "é"),
-    HtmlCode("igrave", "ì"),
-    HtmlCode("iacute", "í"),
-    HtmlCode("ntilde", "ñ"),
-    HtmlCode("ograve", "ò"),
-    HtmlCode("oacute", "ó"),
-    HtmlCode("otilde", "õ"),
-    HtmlCode("divide", "÷"),
-    HtmlCode("oslash", "ø"),
-    HtmlCode("ugrave", "ù"),
-    HtmlCode("uacute", "ú"),
-    HtmlCode("yacute", "ý"),
-    HtmlCode("Lambda", "Λ"),
-    HtmlCode("lambda", "λ"),
-    HtmlCode("sigmaf", "ς"),
-    HtmlCode("hellip", "…"),
-    HtmlCode("weierp", "℘"),
-    HtmlCode("forall", "∀"),
-    HtmlCode("lowast", "∗"),
-    HtmlCode("there4", "∴"),
-    HtmlCode("otimes", "⊗"),
-    HtmlCode("lfloor", "⌊"),
-    HtmlCode("rfloor", "⌋"),
-    HtmlCode("spades", "♠"),
-    HtmlCode("hearts", "♥"),
-    HtmlCode("Scaron", "Š"),
-    HtmlCode("scaron", "š"),
-    HtmlCode("thinsp", " "),
-    HtmlCode("dagger", "†"),
-    HtmlCode("Dagger", "‡"),
-    HtmlCode("permil", "‰"),
-    HtmlCode("lsaquo", "‹"),
-    HtmlCode("rsaquo", "›"),
-]
-let map7: [HtmlCode] = [
-    HtmlCode("Epsilon", "Ε"),
-    HtmlCode("Omicron", "Ο"),
-    HtmlCode("Upsilon", "Υ"),
-    HtmlCode("epsilon", "ε"),
-    HtmlCode("omicron", "ο"),
-    HtmlCode("upsilon", "υ"),
-    HtmlCode("alefsym", "ℵ"),
-]
-let map3: [HtmlCode] = [
-    HtmlCode("yen", "¥"),
-    HtmlCode("uml", "¨"),
-    HtmlCode("not", "¬"),
-    HtmlCode("shy", "­"),
-    HtmlCode("reg", "®"),
-    HtmlCode("deg", "°"),
-    HtmlCode("ETH", "Ð"),
-    HtmlCode("eth", "ð"),
-    HtmlCode("Eta", "Η"),
-    HtmlCode("Rho", "Ρ"),
-    HtmlCode("Tau", "Τ"),
-    HtmlCode("Phi", "Φ"),
-    HtmlCode("Chi", "Χ"),
-    HtmlCode("Psi", "Ψ"),
-    HtmlCode("eta", "η"),
-    HtmlCode("rho", "ρ"),
-    HtmlCode("tau", "τ"),
-    HtmlCode("phi", "φ"),
-    HtmlCode("chi", "χ"),
-    HtmlCode("psi", "ψ"),
-    HtmlCode("piv", "ϖ"),
-    HtmlCode("sum", "∑"),
-    HtmlCode("ang", "∠"),
-    HtmlCode("and", "∧"),
-    HtmlCode("cap", "∩"),
-    HtmlCode("cup", "∪"),
-    HtmlCode("int", "∫"),
-    HtmlCode("sim", "∼"),
-    HtmlCode("sub", "⊂"),
-    HtmlCode("sup", "⊃"),
-    HtmlCode("loz", "◊"),
-    HtmlCode("amp", "&"),
-    HtmlCode("zwj", "‍"),
-    HtmlCode("lrm", "‎"),
-    HtmlCode("rlm", "‏"),
-]
-let map8: [HtmlCode] = [
-    HtmlCode("thetasym", "ϑ"),
+let unicodeHTMLEscapeMapNameLength_2: [HTMLEscapeMap] = [
+    HTMLEscapeMap("lt", "<"),
+    HTMLEscapeMap("gt", ">"),
+    HTMLEscapeMap("Mu", "Μ"),
+    HTMLEscapeMap("Nu", "Ν"),
+    HTMLEscapeMap("Xi", "Ξ"),
+    HTMLEscapeMap("Pi", "Π"),
+    HTMLEscapeMap("mu", "μ"),
+    HTMLEscapeMap("nu", "ν"),
+    HTMLEscapeMap("xi", "ξ"),
+    HTMLEscapeMap("pi", "π"),
+    HTMLEscapeMap("ni", "∋"),
+    HTMLEscapeMap("or", "∨"),
+    HTMLEscapeMap("ne", "≠"),
+    HTMLEscapeMap("le", "≤"),
+    HTMLEscapeMap("ge", "≥"),
 ]
 
-func getTable(length: Int) -> [HtmlCode]? {
+let unicodeHTMLEscapeMapNameLength_3: [HTMLEscapeMap] = [
+    HTMLEscapeMap("amp", "&"),
+    HTMLEscapeMap("yen", "¥"),
+    HTMLEscapeMap("uml", "¨"),
+    HTMLEscapeMap("not", "¬"),
+    HTMLEscapeMap("shy", "­"),
+    HTMLEscapeMap("reg", "®"),
+    HTMLEscapeMap("deg", "°"),
+    HTMLEscapeMap("ETH", "Ð"),
+    HTMLEscapeMap("eth", "ð"),
+    HTMLEscapeMap("zwj", "‍"),
+    HTMLEscapeMap("lrm", "‎"),
+    HTMLEscapeMap("rlm", "‏"),
+    HTMLEscapeMap("Eta", "Η"),
+    HTMLEscapeMap("Rho", "Ρ"),
+    HTMLEscapeMap("Tau", "Τ"),
+    HTMLEscapeMap("Phi", "Φ"),
+    HTMLEscapeMap("Chi", "Χ"),
+    HTMLEscapeMap("Psi", "Ψ"),
+    HTMLEscapeMap("eta", "η"),
+    HTMLEscapeMap("rho", "ρ"),
+    HTMLEscapeMap("tau", "τ"),
+    HTMLEscapeMap("phi", "φ"),
+    HTMLEscapeMap("chi", "χ"),
+    HTMLEscapeMap("psi", "ψ"),
+    HTMLEscapeMap("piv", "ϖ"),
+    HTMLEscapeMap("sum", "∑"),
+    HTMLEscapeMap("ang", "∠"),
+    HTMLEscapeMap("and", "∧"),
+    HTMLEscapeMap("cap", "∩"),
+    HTMLEscapeMap("cup", "∪"),
+    HTMLEscapeMap("int", "∫"),
+    HTMLEscapeMap("sim", "∼"),
+    HTMLEscapeMap("sub", "⊂"),
+    HTMLEscapeMap("sup", "⊃"),
+    HTMLEscapeMap("loz", "◊"),
+]
+
+let unicodeHTMLEscapeMapNameLength_4: [HTMLEscapeMap] = [
+    HTMLEscapeMap("nbsp", " "),
+    HTMLEscapeMap("cent", "¢"),
+    HTMLEscapeMap("sect", "§"),
+    HTMLEscapeMap("copy", "©"),
+    HTMLEscapeMap("ordf", "ª"),
+    HTMLEscapeMap("macr", "¯"),
+    HTMLEscapeMap("sup2", "²"),
+    HTMLEscapeMap("sup3", "³"),
+    HTMLEscapeMap("para", "¶"),
+    HTMLEscapeMap("sup1", "¹"),
+    HTMLEscapeMap("ordm", "º"),
+    HTMLEscapeMap("Auml", "Ä"),
+    HTMLEscapeMap("Euml", "Ë"),
+    HTMLEscapeMap("Iuml", "Ï"),
+    HTMLEscapeMap("Ouml", "Ö"),
+    HTMLEscapeMap("Uuml", "Ü"),
+    HTMLEscapeMap("auml", "ä"),
+    HTMLEscapeMap("euml", "ë"),
+    HTMLEscapeMap("iuml", "ï"),
+    HTMLEscapeMap("ouml", "ö"),
+    HTMLEscapeMap("uuml", "ü"),
+    HTMLEscapeMap("yuml", "ÿ"),
+    HTMLEscapeMap("quot", "\""),
+    HTMLEscapeMap("apos", "'"),
+    HTMLEscapeMap("Yuml", "Ÿ"),
+    HTMLEscapeMap("circ", "ˆ"),
+    HTMLEscapeMap("ensp", " "),
+    HTMLEscapeMap("emsp", " "),
+    HTMLEscapeMap("zwnj", "‌"),
+    HTMLEscapeMap("euro", "€"),
+    HTMLEscapeMap("fnof", "ƒ"),
+    HTMLEscapeMap("Beta", "Β"),
+    HTMLEscapeMap("Zeta", "Ζ"),
+    HTMLEscapeMap("Iota", "Ι"),
+    HTMLEscapeMap("beta", "β"),
+    HTMLEscapeMap("zeta", "ζ"),
+    HTMLEscapeMap("iota", "ι"),
+    HTMLEscapeMap("bull", "•"),
+    HTMLEscapeMap("real", "ℜ"),
+    HTMLEscapeMap("larr", "←"),
+    HTMLEscapeMap("uarr", "↑"),
+    HTMLEscapeMap("darr", "↓"),
+    HTMLEscapeMap("harr", "↔"),
+    HTMLEscapeMap("lArr", "⇐"),
+    HTMLEscapeMap("uArr", "⇑"),
+    HTMLEscapeMap("rArr", "⇒"),
+    HTMLEscapeMap("dArr", "⇓"),
+    HTMLEscapeMap("hArr", "⇔"),
+    HTMLEscapeMap("part", "∂"),
+    HTMLEscapeMap("isin", "∈"),
+    HTMLEscapeMap("prod", "∏"),
+    HTMLEscapeMap("prop", "∝"),
+    HTMLEscapeMap("cong", "≅"),
+    HTMLEscapeMap("nsub", "⊄"),
+    HTMLEscapeMap("sube", "⊆"),
+    HTMLEscapeMap("supe", "⊇"),
+    HTMLEscapeMap("perp", "⊥"),
+    HTMLEscapeMap("sdot", "⋅"),
+    HTMLEscapeMap("lang", "〈"),
+    HTMLEscapeMap("rang", "〉"),
+    HTMLEscapeMap("rarr", "→"),
+]
+
+let unicodeHTMLEscapeMapNameLength_5: [HTMLEscapeMap] = [
+    HTMLEscapeMap("iexcl", "¡"),
+    HTMLEscapeMap("pound", "£"),
+    HTMLEscapeMap("laquo", "«"),
+    HTMLEscapeMap("acute", "´"),
+    HTMLEscapeMap("micro", "µ"),
+    HTMLEscapeMap("cedil", "¸"),
+    HTMLEscapeMap("raquo", "»"),
+    HTMLEscapeMap("Acirc", "Â"),
+    HTMLEscapeMap("Aring", "Å"),
+    HTMLEscapeMap("AElig", "Æ"),
+    HTMLEscapeMap("Ecirc", "Ê"),
+    HTMLEscapeMap("Icirc", "Î"),
+    HTMLEscapeMap("Ocirc", "Ô"),
+    HTMLEscapeMap("times", "×"),
+    HTMLEscapeMap("Ucirc", "Û"),
+    HTMLEscapeMap("THORN", "Þ"),
+    HTMLEscapeMap("szlig", "ß"),
+    HTMLEscapeMap("acirc", "â"),
+    HTMLEscapeMap("aring", "å"),
+    HTMLEscapeMap("aelig", "æ"),
+    HTMLEscapeMap("ecirc", "ê"),
+    HTMLEscapeMap("icirc", "î"),
+    HTMLEscapeMap("ocirc", "ô"),
+    HTMLEscapeMap("ucirc", "û"),
+    HTMLEscapeMap("thorn", "þ"),
+    HTMLEscapeMap("OElig", "Œ"),
+    HTMLEscapeMap("oelig", "œ"),
+    HTMLEscapeMap("tilde", "˜"),
+    HTMLEscapeMap("ndash", "–"),
+    HTMLEscapeMap("mdash", "—"),
+    HTMLEscapeMap("lsquo", "‘"),
+    HTMLEscapeMap("rsquo", "’"),
+    HTMLEscapeMap("sbquo", "‚"),
+    HTMLEscapeMap("ldquo", "“"),
+    HTMLEscapeMap("rdquo", "”"),
+    HTMLEscapeMap("bdquo", "„"),
+    HTMLEscapeMap("Alpha", "Α"),
+    HTMLEscapeMap("Gamma", "Γ"),
+    HTMLEscapeMap("Delta", "Δ"),
+    HTMLEscapeMap("Theta", "Θ"),
+    HTMLEscapeMap("Kappa", "Κ"),
+    HTMLEscapeMap("Sigma", "Σ"),
+    HTMLEscapeMap("Omega", "Ω"),
+    HTMLEscapeMap("alpha", "α"),
+    HTMLEscapeMap("gamma", "γ"),
+    HTMLEscapeMap("delta", "δ"),
+    HTMLEscapeMap("theta", "θ"),
+    HTMLEscapeMap("kappa", "κ"),
+    HTMLEscapeMap("sigma", "σ"),
+    HTMLEscapeMap("omega", "ω"),
+    HTMLEscapeMap("upsih", "ϒ"),
+    HTMLEscapeMap("prime", "′"),
+    HTMLEscapeMap("Prime", "″"),
+    HTMLEscapeMap("oline", "‾"),
+    HTMLEscapeMap("frasl", "⁄"),
+    HTMLEscapeMap("image", "ℑ"),
+    HTMLEscapeMap("trade", "™"),
+    HTMLEscapeMap("crarr", "↵"),
+    HTMLEscapeMap("exist", "∃"),
+    HTMLEscapeMap("empty", "∅"),
+    HTMLEscapeMap("nabla", "∇"),
+    HTMLEscapeMap("notin", "∉"),
+    HTMLEscapeMap("minus", "−"),
+    HTMLEscapeMap("radic", "√"),
+    HTMLEscapeMap("infin", "∞"),
+    HTMLEscapeMap("asymp", "≈"),
+    HTMLEscapeMap("equiv", "≡"),
+    HTMLEscapeMap("oplus", "⊕"),
+    HTMLEscapeMap("lceil", "⌈"),
+    HTMLEscapeMap("rceil", "⌉"),
+    HTMLEscapeMap("clubs", "♣"),
+    HTMLEscapeMap("diams", "♦"),
+]
+
+let unicodeHTMLEscapeMapNameLength_6: [HTMLEscapeMap] = [
+    HTMLEscapeMap("curren", "¤"),
+    HTMLEscapeMap("brvbar", "¦"),
+    HTMLEscapeMap("plusmn", "±"),
+    HTMLEscapeMap("middot", "·"),
+    HTMLEscapeMap("frac14", "¼"),
+    HTMLEscapeMap("frac12", "½"),
+    HTMLEscapeMap("frac34", "¾"),
+    HTMLEscapeMap("iquest", "¿"),
+    HTMLEscapeMap("Agrave", "À"),
+    HTMLEscapeMap("Aacute", "Á"),
+    HTMLEscapeMap("Atilde", "Ã"),
+    HTMLEscapeMap("Ccedil", "Ç"),
+    HTMLEscapeMap("Egrave", "È"),
+    HTMLEscapeMap("Eacute", "É"),
+    HTMLEscapeMap("Igrave", "Ì"),
+    HTMLEscapeMap("Iacute", "Í"),
+    HTMLEscapeMap("Ntilde", "Ñ"),
+    HTMLEscapeMap("Ograve", "Ò"),
+    HTMLEscapeMap("Oacute", "Ó"),
+    HTMLEscapeMap("Otilde", "Õ"),
+    HTMLEscapeMap("Oslash", "Ø"),
+    HTMLEscapeMap("Ugrave", "Ù"),
+    HTMLEscapeMap("Uacute", "Ú"),
+    HTMLEscapeMap("Yacute", "Ý"),
+    HTMLEscapeMap("agrave", "à"),
+    HTMLEscapeMap("aacute", "á"),
+    HTMLEscapeMap("atilde", "ã"),
+    HTMLEscapeMap("ccedil", "ç"),
+    HTMLEscapeMap("egrave", "è"),
+    HTMLEscapeMap("eacute", "é"),
+    HTMLEscapeMap("igrave", "ì"),
+    HTMLEscapeMap("iacute", "í"),
+    HTMLEscapeMap("ntilde", "ñ"),
+    HTMLEscapeMap("ograve", "ò"),
+    HTMLEscapeMap("oacute", "ó"),
+    HTMLEscapeMap("otilde", "õ"),
+    HTMLEscapeMap("divide", "÷"),
+    HTMLEscapeMap("oslash", "ø"),
+    HTMLEscapeMap("ugrave", "ù"),
+    HTMLEscapeMap("uacute", "ú"),
+    HTMLEscapeMap("yacute", "ý"),
+    HTMLEscapeMap("Scaron", "Š"),
+    HTMLEscapeMap("scaron", "š"),
+    HTMLEscapeMap("thinsp", " "),
+    HTMLEscapeMap("dagger", "†"),
+    HTMLEscapeMap("Dagger", "‡"),
+    HTMLEscapeMap("permil", "‰"),
+    HTMLEscapeMap("lsaquo", "‹"),
+    HTMLEscapeMap("rsaquo", "›"),
+    HTMLEscapeMap("Lambda", "Λ"),
+    HTMLEscapeMap("lambda", "λ"),
+    HTMLEscapeMap("sigmaf", "ς"),
+    HTMLEscapeMap("hellip", "…"),
+    HTMLEscapeMap("weierp", "℘"),
+    HTMLEscapeMap("forall", "∀"),
+    HTMLEscapeMap("lowast", "∗"),
+    HTMLEscapeMap("there4", "∴"),
+    HTMLEscapeMap("otimes", "⊗"),
+    HTMLEscapeMap("lfloor", "⌊"),
+    HTMLEscapeMap("rfloor", "⌋"),
+    HTMLEscapeMap("spades", "♠"),
+    HTMLEscapeMap("hearts", "♥"),
+]
+
+let unicodeHTMLEscapeMapNameLength_7: [HTMLEscapeMap] = [
+    HTMLEscapeMap("Epsilon", "Ε"),
+    HTMLEscapeMap("Omicron", "Ο"),
+    HTMLEscapeMap("Upsilon", "Υ"),
+    HTMLEscapeMap("epsilon", "ε"),
+    HTMLEscapeMap("omicron", "ο"),
+    HTMLEscapeMap("upsilon", "υ"),
+    HTMLEscapeMap("alefsym", "ℵ"),
+]
+
+let unicodeHTMLEscapeMapNameLength_8: [HTMLEscapeMap] = [
+    HTMLEscapeMap("thetasym", "ϑ"),
+]
+
+func getTable(length: Int) -> [HTMLEscapeMap]? {
     switch length {
     case 2:
-        return map2
+        return unicodeHTMLEscapeMapNameLength_2
     case 3:
-        return map3
+        return unicodeHTMLEscapeMapNameLength_3
     case 4:
-        return map4
+        return unicodeHTMLEscapeMapNameLength_4
     case 5:
-        return map5
+        return unicodeHTMLEscapeMapNameLength_5
     case 6:
-        return map6
+        return unicodeHTMLEscapeMapNameLength_6
     case 7:
-        return map7
+        return unicodeHTMLEscapeMapNameLength_7
     case 8:
-        return map8
+        return unicodeHTMLEscapeMapNameLength_8
     default:
         return nil
     }
 }
 
 extension String {
-    public func escapeHTML() -> String {
+    public var unescapeHTML: String {
+        var unescapingString = self
+        
+        let startIndex = unescapingString.startIndex
+        var endIndex = unescapingString.endIndex
+        
+        let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
+        repeat {
+            guard let rangeOfAmp = unescapingString.range(of: "&", options: .backwards, range: startIndex..<endIndex, locale: nil) else { break }
+            guard let rangeOfSemicollon = unescapingString.range(of: ";", options: [], range: rangeOfAmp.lowerBound..<endIndex, locale: nil) else { continue }
+            
+            let prefixChar1 = unescapingString.substring(with: rangeOfAmp.lowerBound..<unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 2))
+            
+            if prefixChar1 == "&#" {
+                let prefixChar2 = unescapingString.substring(with: rangeOfAmp.lowerBound..<unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 3))
+                if prefixChar2 == "&#x" || prefixChar2 == "&#X" {
+                    let startIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 3)
+                    let endIndex = unescapingString.index(rangeOfSemicollon.lowerBound, offsetBy: 0)
+                    let hexString = unescapingString.substring(with: startIndex..<endIndex)
+                    if let charCode = UInt16(hexString, radix: 16) {
+                        let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
+                        buffer.pointee = charCode
+                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
+                            unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: c)
+                        }
+                    }
+                } else {
+                    let startIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 2)
+                    let endIndex = unescapingString.index(rangeOfSemicollon.lowerBound, offsetBy: 0)
+                    let decimalString = unescapingString.substring(with: startIndex..<endIndex)
+                    if let charCode = UInt16(decimalString) {
+                        buffer.pointee = charCode
+                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
+                            unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: c)
+                        }
+                    }
+                }
+            } else {
+                let startIndex = unescapingString.index(rangeOfAmp.lowerBound, offsetBy: 1)
+                let endIndex = unescapingString.index(rangeOfSemicollon.lowerBound, offsetBy: 0)
+                let name = unescapingString.substring(with: startIndex..<endIndex)
+                if let table = getTable(length: name.characters.count) {
+                    if let index = table.index(where: {$0.name == name}) {
+                        unescapingString.replaceSubrange(rangeOfAmp.lowerBound..<rangeOfSemicollon.upperBound, with: table[index].character)
+                    }
+                }
+            }
+            endIndex = rangeOfAmp.lowerBound
+        } while true
+        buffer.deallocate(capacity: 1)
+        return unescapingString
+    }
+    
+    public var unescapeHTMLLikeObjC: String {
         var finalString: NSMutableString = NSMutableString(string: self)
-        
         var range = finalString.range(of: "&", options: .backwards)
-        
         var terminal = finalString.length
         
         while range.length > 0 {
             let r = finalString.range(of: ";", options: [], range: NSMakeRange(range.location, terminal - range.location))
-            
+            if r.location == NSNotFound {
+                range = finalString.range(of: "&", options: .backwards, range:NSMakeRange(0, range.location))
+                if range.location == NSNotFound { break }
+                continue
+            }
             let location = range.location
             let length = r.location - range.location
-            
             let char1 = finalString.character(at: location + 1)
-            
             let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
             defer { buffer.deallocate(capacity: length) }
             if char1 == 35 {
                 let char2 = finalString.character(at: location + 2)
-                if char2 == 120 {
+                if char2 == 120 || char2 == 88 {
                     let hexString = finalString.substring(with: NSMakeRange(location + 3, r.location - range.location - 3))
-                    buffer.pointee = UInt16(hexString, radix: 16) ?? 0
-                    if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-                        finalString.replaceCharacters(in: NSMakeRange(location, length + 1), with: c)
+                    if let hex = UInt16(hexString, radix: 16) {
+                        buffer.pointee = hex
+                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
+                            finalString.replaceCharacters(in: NSMakeRange(location, length + 1), with: c)
+                        }
                     }
                 } else {
                     let decimalString = finalString.substring(with: NSMakeRange(location + 2, r.location - range.location - 2))
-                    let hex = UInt16(decimalString) ?? 0
-                    buffer.pointee = hex
-                    if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-                        finalString.replaceCharacters(in: NSMakeRange(location, length + 1), with: c)
+                    if let hex = UInt16(decimalString) {
+                        buffer.pointee = hex
+                        if let c = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * 1, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
+                            finalString.replaceCharacters(in: NSMakeRange(location, length + 1), with: c)
+                        }
                     }
                 }
             } else {
@@ -349,9 +412,7 @@ extension String {
             }
             terminal = location
             range = finalString.range(of: "&", options: .backwards, range:NSMakeRange(0, location))
-            if range.location == NSNotFound {
-                break
-            }
+            if range.location == NSNotFound { break }
         }
         return finalString as String
     }

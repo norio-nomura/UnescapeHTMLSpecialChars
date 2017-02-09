@@ -102,6 +102,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1456F0601E4C072A0091F0BC /* Google toolbox for Mac */ = {
+			isa = PBXGroup;
+			children = (
+				149EAD0E1E4B798F00E54BE0 /* GTMDefines.h */,
+				149EAD0F1E4B798F00E54BE0 /* GTMNSString+HTML.h */,
+				149EAD101E4B798F00E54BE0 /* GTMNSString+HTML.m */,
+			);
+			name = "Google toolbox for Mac";
+			sourceTree = "<group>";
+		};
 		149EACCA1E4B783C00E54BE0 = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +135,8 @@
 		149EACD61E4B783C00E54BE0 /* UnescapeHTMLSpecialChars */ = {
 			isa = PBXGroup;
 			children = (
-				149EACEE1E4B78D700E54BE0 /* UnescapeHTMLSpecialChars.swift */,
 				149EACD71E4B783C00E54BE0 /* UnescapeHTMLSpecialChars.h */,
+				149EACEE1E4B78D700E54BE0 /* UnescapeHTMLSpecialChars.swift */,
 				149EACD81E4B783C00E54BE0 /* Info.plist */,
 			);
 			path = UnescapeHTMLSpecialChars;
@@ -135,13 +145,11 @@
 		149EACE11E4B783C00E54BE0 /* UnescapeHTMLSpecialCharsTests */ = {
 			isa = PBXGroup;
 			children = (
-				149EAD0E1E4B798F00E54BE0 /* GTMDefines.h */,
-				149EAD0F1E4B798F00E54BE0 /* GTMNSString+HTML.h */,
-				149EAD101E4B798F00E54BE0 /* GTMNSString+HTML.m */,
+				1456F0601E4C072A0091F0BC /* Google toolbox for Mac */,
+				149EAD0D1E4B798E00E54BE0 /* testHost-Bridging-Header.h */,
+				149EAD0C1E4B798E00E54BE0 /* UnescapeHTMLSpecialCharsTests-Bridging-Header.h */,
 				149EACE21E4B783C00E54BE0 /* UnescapeHTMLSpecialCharsTests.swift */,
 				149EACE41E4B783C00E54BE0 /* Info.plist */,
-				149EAD0C1E4B798E00E54BE0 /* UnescapeHTMLSpecialCharsTests-Bridging-Header.h */,
-				149EAD0D1E4B798E00E54BE0 /* testHost-Bridging-Header.h */,
 			);
 			path = UnescapeHTMLSpecialCharsTests;
 			sourceTree = "<group>";
@@ -591,6 +599,7 @@
 				149EACEA1E4B783C00E54BE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		149EACEB1E4B783C00E54BE0 /* Build configuration list for PBXNativeTarget "UnescapeHTMLSpecialCharsTests" */ = {
 			isa = XCConfigurationList;
@@ -599,6 +608,7 @@
 				149EACED1E4B783C00E54BE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		149EAD031E4B795500E54BE0 /* Build configuration list for PBXNativeTarget "testHost" */ = {
 			isa = XCConfigurationList;
@@ -607,6 +617,7 @@
 				149EAD051E4B795500E54BE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

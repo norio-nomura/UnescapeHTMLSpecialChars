@@ -16,26 +16,30 @@ class ViewController: UIViewController {
     
     func sampling() {
         for _ in 0..<self.testCount {
-            let _ = self.testString.gtm_stringByUnescapingFromHTML()
+            let _ = self.testString.unescapeHTMLLikeObjC
         }
         for _ in 0..<self.testCount {
-            let _ = self.testString.escapeHTML()
+            let _ = self.testString.unescapeHTML
+        }
+        for _ in 0..<self.testCount {
+            let _ = self.testString.gtm_stringByUnescapingFromHTML()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            self.sampling()
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
-            self.sampling()
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
-            self.sampling()
-        }
+//        // Do any additional setup after loading the view, typically from a nib.
+//        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+//            self.sampling()
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+//            self.sampling()
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
+//            self.sampling()
+//        }
+        self.sampling()
     }
     
     override func didReceiveMemoryWarning() {
