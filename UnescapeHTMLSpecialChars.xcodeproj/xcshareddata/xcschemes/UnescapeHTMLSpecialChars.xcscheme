@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "9999"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,21 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "149EACD31E4B783C00E54BE0"
+               BlueprintIdentifier = "OBJ_24"
+               BuildableName = "GoogleToolbox.framework"
+               BlueprintName = "GoogleToolbox"
+               ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_32"
                BuildableName = "UnescapeHTMLSpecialChars.framework"
                BlueprintName = "UnescapeHTMLSpecialChars"
                ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
@@ -32,22 +46,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "149EACDC1E4B783C00E54BE0"
+               BlueprintIdentifier = "OBJ_41"
                BuildableName = "UnescapeHTMLSpecialCharsTests.xctest"
                BlueprintName = "UnescapeHTMLSpecialCharsTests"
                ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "149EACD31E4B783C00E54BE0"
-            BuildableName = "UnescapeHTMLSpecialChars.framework"
-            BlueprintName = "UnescapeHTMLSpecialChars"
-            ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +69,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "149EACD31E4B783C00E54BE0"
-            BuildableName = "UnescapeHTMLSpecialChars.framework"
-            BlueprintName = "UnescapeHTMLSpecialChars"
+            BlueprintIdentifier = "OBJ_24"
+            BuildableName = "GoogleToolbox.framework"
+            BlueprintName = "GoogleToolbox"
             ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,16 +84,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "149EACF31E4B795500E54BE0"
-            BuildableName = "testHost.app"
-            BlueprintName = "testHost"
+            BlueprintIdentifier = "OBJ_24"
+            BuildableName = "GoogleToolbox.framework"
+            BlueprintName = "GoogleToolbox"
             ReferencedContainer = "container:UnescapeHTMLSpecialChars.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

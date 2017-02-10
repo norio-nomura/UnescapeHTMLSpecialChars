@@ -6,29 +6,31 @@
 //  Copyright © 2017年 sonson. All rights reserved.
 //
 
+import Foundation
 import XCTest
+import GoogleToolbox
 @testable import UnescapeHTMLSpecialChars
 
 class UnescapeHTMLSpecialCharsTests: XCTestCase {
     let testCount = 1000
     let testString2 = "hoge&copy;abcdef&#169;aaaa&#xa9;aa"
     let testString = "hoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahoghoge&copy;a&#169;aaaaa&#xa9;aaaaahog"
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testExample() {
         print(testString.unescapeHTML)
         print(testString.gtm_stringByUnescapingFromHTML())
     }
-    
+
     func testPerformanceOriginal() {
         self.measure {
             for _ in 0..<self.testCount {
@@ -36,7 +38,7 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
             }
         }
     }
-    
+
     func testPerformanceGoogle() {
         self.measure {
             for _ in 0..<self.testCount {
@@ -44,11 +46,11 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
             }
         }
     }
-    
+
     func testImp() {
         print("&lt;this &amp; that&gt;&#65;&#x42;&#X43;".unescapeHTML)
     }
-    
+
     func testUnescaping() {
         let string = "&quot;&amp;&apos;&lt;&gt;&nbsp;&iexcl;&cent;&pound;&curren;&yen;"
         + "&brvbar;&sect;&uml;&copy;&ordf;&laquo;&not;&shy;&reg;&macr;&deg;"
@@ -78,7 +80,7 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
         + "&sub;&sup;&nsub;&sube;&supe;&oplus;&otimes;&perp;&sdot;&lceil;"
         + "&rceil;&lfloor;&rfloor;&lang;&rang;&loz;&spades;&clubs;&hearts;"
         + "&diams;"
-        
+
         let chars: [unichar] = [
             34, 38, 39, 60, 62, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170,
             171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185,
@@ -99,9 +101,9 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
             8801, 8804, 8805, 8834, 8835, 8836, 8838, 8839, 8853, 8855, 8869, 8901, 8968,
             8969, 8970, 8971, 9001, 9002, 9674, 9824, 9827, 9829, 9830
         ]
-        
+
         let s = string.unescapeHTML
-        
+
         for i in 0..<chars.count {
             let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
             defer { buffer.deallocate(capacity: chars.count) }
@@ -109,7 +111,7 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
             guard let testString = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) else { XCTFail(); return }
             XCTAssert(testString == (s as NSString).substring(with: NSMakeRange(i,1)), "\(chars[i])=>\((s as NSString).substring(with: NSMakeRange(i,1)).unescapeHTML)")
         }
-        
+
         XCTAssert("&#65;&#x42;&#X43;".unescapeHTML == "ABC", "HTML unescaping failed")
         XCTAssert("" == "", "HTML unescaping failed")
         XCTAssert("&#65;&Bang;&#X43;".unescapeHTML == "A&Bang;C", "HTML unescaping failed")

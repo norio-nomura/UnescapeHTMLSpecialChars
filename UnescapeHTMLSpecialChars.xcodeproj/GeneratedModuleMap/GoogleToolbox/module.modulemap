@@ -1,0 +1,5 @@
+module GoogleToolbox {
+    umbrella "/Users/sonson/Desktop/UnescapeHTMLSpecialChars/Sources/GoogleToolbox/include"
+    link "GoogleToolbox"
+    export *
+}
