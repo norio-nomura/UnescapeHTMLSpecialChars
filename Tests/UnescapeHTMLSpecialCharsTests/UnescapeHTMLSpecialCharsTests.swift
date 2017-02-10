@@ -8,7 +8,9 @@
 
 import Foundation
 import XCTest
+#if SWIFT_PACKAGE
 import GoogleToolbox
+#endif
 @testable import UnescapeHTMLSpecialChars
 
 class UnescapeHTMLSpecialCharsTests: XCTestCase {
