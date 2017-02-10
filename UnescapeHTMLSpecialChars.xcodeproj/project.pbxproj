@@ -464,7 +464,7 @@
 					"$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM",
 				);
 				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/UnescapeHTMLSpecialCharsTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM/module.modulemap";
@@ -486,7 +486,7 @@
 					"$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM",
 				);
 				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/UnescapeHTMLSpecialCharsTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM/module.modulemap";
