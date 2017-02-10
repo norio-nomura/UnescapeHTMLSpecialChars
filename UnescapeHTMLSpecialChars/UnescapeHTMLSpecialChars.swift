@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HTMLEscapeMap {
+private struct HTMLEscapeMap {
     let name: String
     let nameUnicodes: [unichar]
     let code: unichar
@@ -21,7 +21,7 @@ struct HTMLEscapeMap {
     }
 }
 
-let unicodeHTMLEscapeMapNameLength_2: [HTMLEscapeMap] = [
+private let unicodeHTMLEscapeMapNameLength_2: [HTMLEscapeMap] = [
     HTMLEscapeMap("gt", 62, ">", [103, 116]),
     HTMLEscapeMap("Mu", 924, "Μ", [77, 117]),
     HTMLEscapeMap("Nu", 925, "Ν", [78, 117]),
@@ -39,7 +39,7 @@ let unicodeHTMLEscapeMapNameLength_2: [HTMLEscapeMap] = [
     HTMLEscapeMap("lt", 60, "<", [108, 116]),
 ]
 
-let unicodeHTMLEscapeMapNameLength_3: [HTMLEscapeMap] = [
+private let unicodeHTMLEscapeMapNameLength_3: [HTMLEscapeMap] = [
     HTMLEscapeMap("yen", 165, "¥", [121, 101, 110]),
     HTMLEscapeMap("uml", 168, "¨", [117, 109, 108]),
     HTMLEscapeMap("not", 172, "¬", [110, 111, 116]),
@@ -77,7 +77,7 @@ let unicodeHTMLEscapeMapNameLength_3: [HTMLEscapeMap] = [
     HTMLEscapeMap("amp", 38, "&", [97, 109, 112]),
 ]
 
-let unicodeHTMLEscapeMapNameLength_4: [HTMLEscapeMap] = [
+private let unicodeHTMLEscapeMapNameLength_4: [HTMLEscapeMap] = [
     HTMLEscapeMap("nbsp", 160, " ", [110, 98, 115, 112]),
     HTMLEscapeMap("cent", 162, "¢", [99, 101, 110, 116]),
     HTMLEscapeMap("sect", 167, "§", [115, 101, 99, 116]),
@@ -141,7 +141,7 @@ let unicodeHTMLEscapeMapNameLength_4: [HTMLEscapeMap] = [
     HTMLEscapeMap("rang", 9002, "〉", [114, 97, 110, 103]),
 ]
 
-let unicodeHTMLEscapeMapNameLength_5: [HTMLEscapeMap] = [
+private let unicodeHTMLEscapeMapNameLength_5: [HTMLEscapeMap] = [
     HTMLEscapeMap("iexcl", 161, "¡", [105, 101, 120, 99, 108]),
     HTMLEscapeMap("pound", 163, "£", [112, 111, 117, 110, 100]),
     HTMLEscapeMap("laquo", 171, "«", [108, 97, 113, 117, 111]),
@@ -216,7 +216,7 @@ let unicodeHTMLEscapeMapNameLength_5: [HTMLEscapeMap] = [
     HTMLEscapeMap("diams", 9830, "♦", [100, 105, 97, 109, 115]),
 ]
 
-let unicodeHTMLEscapeMapNameLength_6: [HTMLEscapeMap] = [
+private let unicodeHTMLEscapeMapNameLength_6: [HTMLEscapeMap] = [
     HTMLEscapeMap("curren", 164, "¤", [99, 117, 114, 114, 101, 110]),
     HTMLEscapeMap("brvbar", 166, "¦", [98, 114, 118, 98, 97, 114]),
     HTMLEscapeMap("plusmn", 177, "±", [112, 108, 117, 115, 109, 110]),
@@ -281,7 +281,7 @@ let unicodeHTMLEscapeMapNameLength_6: [HTMLEscapeMap] = [
     HTMLEscapeMap("hearts", 9829, "♥", [104, 101, 97, 114, 116, 115]),
 ]
 
-let unicodeHTMLEscapeMapNameLength_7: [HTMLEscapeMap] = [
+private let unicodeHTMLEscapeMapNameLength_7: [HTMLEscapeMap] = [
     HTMLEscapeMap("Epsilon", 917, "Ε", [69, 112, 115, 105, 108, 111, 110]),
     HTMLEscapeMap("Omicron", 927, "Ο", [79, 109, 105, 99, 114, 111, 110]),
     HTMLEscapeMap("Upsilon", 933, "Υ", [85, 112, 115, 105, 108, 111, 110]),
@@ -291,11 +291,11 @@ let unicodeHTMLEscapeMapNameLength_7: [HTMLEscapeMap] = [
     HTMLEscapeMap("alefsym", 8501, "ℵ", [97, 108, 101, 102, 115, 121, 109]),
 ]
 
-let unicodeHTMLEscapeMapNameLength_8: [HTMLEscapeMap] = [
+private let unicodeHTMLEscapeMapNameLength_8: [HTMLEscapeMap] = [
     HTMLEscapeMap("thetasym", 977, "ϑ", [116, 104, 101, 116, 97, 115, 121, 109]),
 ]
 
-func getTable(length: Int) -> [HTMLEscapeMap]? {
+private func getTable(length: Int) -> [HTMLEscapeMap]? {
     switch length {
     case 2:
         return unicodeHTMLEscapeMapNameLength_2
@@ -316,33 +316,9 @@ func getTable(length: Int) -> [HTMLEscapeMap]? {
     }
 }
 
-func getCharacter(name: String) -> unichar? {
-    if let table = getTable(length: name.characters.count) {
-        if let index = table.index(where: {$0.name == name}) {
-            return table[index].code
-        }
-    }
-    return nil
-}
-
-func search(buffer: UnsafeMutablePointer<unichar>, from: Int, to: Int, char: unichar, forward: Bool) -> Int {
-    if forward {
-        for i in from..<to {
-            if (buffer + i).pointee == char {
-                return i
-            }
-        }
-    } else {
-        for i in from..<to {
-            if (buffer + to - 1 - i).pointee == char {
-                return to - 1 - i
-            }
-        }
-    }
-    return -1
-}
-
 extension String {
+    // Original code written by @norio_nomura
+    // https://gist.github.com/norio-nomura/2a79822004e7c89228300cf19595ca99
     public var unescapeHTML: String {
         var buffer = [unichar](repeating: 0, count: utf16.count)
         NSString(string: self).getCharacters(&buffer)
@@ -352,8 +328,6 @@ extension String {
         let semicolon = unichar(UInt8(ascii: ";"))
         let sharp = unichar(UInt8(ascii: "#"))
         let hexPrefixes = ["X", "x"].map { unichar(UInt8(ascii: $0)) }
-        
-        let f = true
         
         while let begin = buffer.prefix(upTo: end).reversed().index(of: ampersand).map({ buffer.index(before: $0.base) }) {
             defer { end = begin }
@@ -367,30 +341,15 @@ extension String {
                 let char2 = buffer[begin + 2]
                 if hexPrefixes.contains(char2) {
                     // Hex escape squences &#xa3;
-                    if f {
-                        character = hexStream2UnicodeChars(utf16Storage: buffer[begin + 3..<semicolonIndex])
-                    } else {
-                        let hexString = String(utf16Storage: buffer[begin + 3..<semicolonIndex])
-                        character = unichar(hexString, radix: 16)
-                    }
+                    character = hexStream2UnicodeChars(utf16Storage: buffer[begin + 3..<semicolonIndex])
                 } else {
                     // Decimal Sequences &#123;
-                    if f {
-                        character = decimalStream2UnicodeChars(utf16Storage: buffer[begin + 2..<semicolonIndex])
-                    } else {
-                        let decimalString = String(utf16Storage: buffer[begin + 2..<semicolonIndex])
-                        character = unichar(decimalString)
-                    }
+                    character = decimalStream2UnicodeChars(utf16Storage: buffer[begin + 2..<semicolonIndex])
                 }
             } else {
                 // "standard" sequences
                 let escapedNameRange = begin + 1..<semicolonIndex
-                if f {
-                    character = matchUnicodeChars(utf16Storage: buffer[escapedNameRange])
-                } else {
-                    let escapedName = String(utf16Storage: buffer[escapedNameRange])
-                    character = tableMap[escapedNameRange.count]?[escapedName]
-                }
+                character = matchUnicodeChars(utf16Storage: buffer[escapedNameRange])
             }
             if let character = character {
                 buffer[range] = [character]
@@ -414,16 +373,6 @@ private protocol ContiguousStorage: Sequence {
 extension Array: ContiguousStorage {}
 extension ArraySlice: ContiguousStorage {}
 extension ContiguousArray: ContiguousStorage {}
-
-private func hexStream2UnicodeChars2<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
-    return utf16Storage.withUnsafeBufferPointer {
-        var basis: [UInt16] = [1, 16, 256, 4096].prefix($0.count).map({$0})
-        return $0.reduce(0, { (r, v) -> UInt16 in
-            guard let b = basis.popLast() else { return 0 }
-            return r + b * v
-        })
-    }
-}
 
 private func hexStream2UnicodeChars<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
     return utf16Storage.withUnsafeBufferPointer {
@@ -486,107 +435,5 @@ private func matchUnicodeChars<T>(utf16Storage: T) -> unichar? where T: Contiguo
             }
         }
         return nil
-    }
-}
-
-private func escapeMap(from array: [HTMLEscapeMap]) -> [String:unichar] {
-    var map = [String: unichar](minimumCapacity: array.count)
-    array.forEach {
-        map[$0.name] = $0.character.utf16.first!
-    }
-    return map
-}
-
-private let tableMap: [Int:[String:unichar]] = [
-    2: escapeMap(from:unicodeHTMLEscapeMapNameLength_2),
-    3: escapeMap(from:unicodeHTMLEscapeMapNameLength_3),
-    4: escapeMap(from:unicodeHTMLEscapeMapNameLength_4),
-    5: escapeMap(from:unicodeHTMLEscapeMapNameLength_5),
-    6: escapeMap(from:unicodeHTMLEscapeMapNameLength_6),
-    7: escapeMap(from:unicodeHTMLEscapeMapNameLength_7),
-    8: escapeMap(from:unicodeHTMLEscapeMapNameLength_8),
-]
-
-extension String {
-    public var unescapeHTML_: String {
-        var length = self.characters.count
-        let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: length)
-        defer { buffer.deallocate(capacity: length) }
-        let temp = UnsafeMutablePointer<unichar>.allocate(capacity: length)
-        defer { temp.deallocate(capacity: length) }
-        (self as NSString).getCharacters(buffer)
-        
-        var range = length
-
-        repeat {
-            let ampIndex = search(buffer: buffer, from: 0, to: range, char: 38, forward: false)
-            if ampIndex == -1 {
-                break
-            }
-            let semiColonIndex = search(buffer: buffer, from: ampIndex, to: range, char: 59, forward: true)
-            if semiColonIndex == -1 {
-                range = ampIndex
-                continue
-            }
-            
-            let prefix1 = (buffer + ampIndex + 1).pointee
-            let prefix2 = (buffer + ampIndex + 2).pointee
-            
-            if prefix1 == 35 {
-                if prefix2 == 120 || prefix2 == 88 {
-                    let codeLength = semiColonIndex - 1 - ampIndex - 2
-                    if let hexString = String(bytesNoCopy: buffer + ampIndex + 3, length: MemoryLayout<unichar>.size * codeLength, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-                        if let charCode = UInt16(hexString, radix: 16) {
-                            (buffer + ampIndex).pointee = charCode
-                            let from = semiColonIndex + 1
-                            let copyLength = length - from
-                            if copyLength > 0 {
-                                memcpy(buffer + ampIndex + 1, buffer + from, MemoryLayout<unichar>.size * copyLength)
-                            }
-                            length = length - (semiColonIndex - ampIndex)
-                        }
-                    }
-                } else {
-                    let codeLength = semiColonIndex - 1 - ampIndex - 1
-                    if let decimalString = String(bytesNoCopy: buffer + ampIndex + 2, length: MemoryLayout<unichar>.size * codeLength, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-                        if let charCode = UInt16(decimalString) {
-                            (buffer + ampIndex).pointee = charCode
-                            let from = semiColonIndex + 1
-                            let copyLength = length - from
-                            if copyLength > 0 {
-                                memcpy(buffer + ampIndex + 1, buffer + from, MemoryLayout<unichar>.size * copyLength)
-                            }
-                            length = length - (semiColonIndex - ampIndex)
-                        }
-                    }
-                }
-            } else {
-                let codeLength = semiColonIndex - 1 - ampIndex
-                if let name = String(bytesNoCopy: buffer + ampIndex + 1, length: MemoryLayout<unichar>.size * codeLength, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-                    if let charCode = getCharacter(name: name) {
-                        (buffer + ampIndex).pointee = charCode
-                        let from = semiColonIndex + 1
-                        let copyLength = length - from
-                        if copyLength > 0 {
-                            memcpy(buffer + ampIndex + 1, buffer + from, MemoryLayout<unichar>.size * copyLength)
-                        }
-                        length = length - (semiColonIndex - ampIndex)
-                    }
-                }
-            }
-//            
-//            if let t = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * length, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-//                print(t)
-//            }
-//            
-////            print(ampIndex)
-////            print(semiColonIndex)
-            range = ampIndex
-        } while true
-//
-        if let t = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * length, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) {
-            return t
-        }
-        return self
     }
 }
