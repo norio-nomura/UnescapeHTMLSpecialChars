@@ -343,6 +343,166 @@ func search(buffer: UnsafeMutablePointer<unichar>, from: Int, to: Int, char: uni
 
 extension String {
     public var unescapeHTML: String {
+        var buffer = [unichar](repeating: 0, count: utf16.count)
+        NSString(string: self).getCharacters(&buffer)
+        
+        var end = buffer.endIndex
+        let ampersand = unichar(UInt8(ascii: "&"))
+        let semicolon = unichar(UInt8(ascii: ";"))
+        let sharp = unichar(UInt8(ascii: "#"))
+        let hexPrefixes = ["X", "x"].map { unichar(UInt8(ascii: $0)) }
+        
+        let f = true
+        
+        while let begin = buffer.prefix(upTo: end).reversed().index(of: ampersand).map({ buffer.index(before: $0.base) }) {
+            defer { end = begin }
+            // if we don't find a semicolon in the range, we don't have a sequence
+            guard let semicolonIndex = buffer[begin..<end].index(of: semicolon) else { continue }
+            let range = begin...semicolonIndex
+            // a squence must be longer than 3 (&lt;) and less than 11 (&thetasym;)
+            guard 4...10 ~= range.count else { continue }
+            let character: unichar?
+            if buffer[begin + 1] == sharp {
+                let char2 = buffer[begin + 2]
+                if hexPrefixes.contains(char2) {
+                    // Hex escape squences &#xa3;
+                    if f {
+//                        character = hexStream2UnicodeChars2(array: buffer[begin + 3..<semicolonIndex], length: (begin + 3..<semicolonIndex).count)
+                        character = hexStream2UnicodeChars(utf16Storage: buffer[begin + 3..<semicolonIndex], length: (begin + 3..<semicolonIndex).count)
+                    } else {
+                        let hexString = String(utf16Storage: buffer[begin + 3..<semicolonIndex])
+                        character = unichar(hexString, radix: 16)
+                    }
+                } else {
+                    // Decimal Sequences &#123;
+                    if f {
+                        character = decimalStream2UnicodeChars(utf16Storage: buffer[begin + 2..<semicolonIndex])
+                    } else {
+                        let decimalString = String(utf16Storage: buffer[begin + 2..<semicolonIndex])
+                        character = unichar(decimalString)
+                    }
+                }
+            } else {
+                // "standard" sequences
+                let escapedNameRange = begin + 1..<semicolonIndex
+                if f {
+                    character = matchUnicodeChars(utf16Storage: buffer[escapedNameRange])
+                } else {
+                    let escapedName = String(utf16Storage: buffer[escapedNameRange])
+                    character = tableMap[escapedNameRange.count]?[escapedName]
+                }
+            }
+            if let character = character {
+                buffer[range] = [character]
+            }
+        }
+        
+        return String(utf16Storage: buffer)
+    }
+    
+    private init<T>(utf16Storage: T) where T: ContiguousStorage, T.Iterator.Element == unichar {
+        self = utf16Storage.withUnsafeBufferPointer {
+            String(utf16CodeUnits: $0.baseAddress!, count: $0.count)
+        }
+    }
+}
+
+private protocol ContiguousStorage: Sequence {
+    func withUnsafeBufferPointer<R>(_ body: (UnsafeBufferPointer<Iterator.Element>) throws -> R) rethrows -> R
+}
+
+extension Array: ContiguousStorage {}
+extension ArraySlice: ContiguousStorage {}
+extension ContiguousArray: ContiguousStorage {}
+
+private func hexStream2UnicodeChars2(array: [unichar], length: Int) -> unichar? {
+    return nil
+}
+
+private func hexStream2UnicodeChars<T>(utf16Storage: T, length: Int) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
+    return utf16Storage.withUnsafeBufferPointer {
+        let unichars = $0.baseAddress!
+        var u = UInt16(0)
+        if $0.count > 4 { return nil }
+        let basis: [UInt16] = [4096, 256, 16, 1]
+        for j in 0..<$0.count {
+            if (48...57) ~= unichars[j] {
+                let v = basis[(4 - $0.count + j)] * (unichars[j] - 48)
+                u = u + v
+            } else if (65...70) ~= unichars[j] {
+                let v = basis[(4 - $0.count + j)] * (unichars[j] - 65 + 10)
+                u = u + v
+            } else if (97...102) ~= unichars[j] {
+                let v = basis[(4 - $0.count + j)] * (unichars[j] - 97 + 10)
+                u = u + v
+            } else {
+                return nil
+            }
+        }
+        return u
+    }
+}
+
+private func decimalStream2UnicodeChars<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
+    return utf16Storage.withUnsafeBufferPointer {
+        let unichars = $0.baseAddress!
+        var u = UInt16(0)
+        if $0.count > 5 { return nil }
+        let basis: [UInt16] = [10000, 1000, 100, 10, 1]
+        for j in 0..<$0.count {
+            if (48...57) ~= unichars[j] {
+                let v = basis[(4 - $0.count + j)] * (unichars[j] - 48)
+                u = u + v
+            } else {
+                return nil
+            }
+        }
+        return u
+    }
+}
+
+private func matchUnicodeChars<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
+    return utf16Storage.withUnsafeBufferPointer {
+        let unichars = $0.baseAddress!
+        if let t = getTable(length: $0.count) {
+            for i in 0..<t.count {
+                var match = true
+                for j in 0..<$0.count {
+                    if t[i].nameUnicodes[j] == unichars[j] {
+                    } else {
+                        match = false
+                        break
+                    }
+                }
+                if match {
+                    return t[i].code
+                }
+            }
+        }
+        return nil
+    }
+}
+
+private func escapeMap(from array: [HTMLEscapeMap]) -> [String:unichar] {
+    var map = [String: unichar](minimumCapacity: array.count)
+    array.forEach {
+        map[$0.name] = $0.character.utf16.first!
+    }
+    return map
+}
+
+private let tableMap: [Int:[String:unichar]] = [
+    2: escapeMap(from:unicodeHTMLEscapeMapNameLength_2),
+    3: escapeMap(from:unicodeHTMLEscapeMapNameLength_3),
+    4: escapeMap(from:unicodeHTMLEscapeMapNameLength_4),
+    5: escapeMap(from:unicodeHTMLEscapeMapNameLength_5),
+    6: escapeMap(from:unicodeHTMLEscapeMapNameLength_6),
+    7: escapeMap(from:unicodeHTMLEscapeMapNameLength_7),
+    8: escapeMap(from:unicodeHTMLEscapeMapNameLength_8),
+]
+
+extension String {
+    public var unescapeHTML_: String {
         var length = self.characters.count
         let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: length)
         defer { buffer.deallocate(capacity: length) }

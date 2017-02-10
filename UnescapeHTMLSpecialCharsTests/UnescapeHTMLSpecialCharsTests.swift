@@ -49,7 +49,6 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
         print("&lt;this &amp; that&gt;&#65;&#x42;&#X43;".unescapeHTML)
     }
     
-    
     func testUnescaping() {
         let string = "&quot;&amp;&apos;&lt;&gt;&nbsp;&iexcl;&cent;&pound;&curren;&yen;"
         + "&brvbar;&sect;&uml;&copy;&ordf;&laquo;&not;&shy;&reg;&macr;&deg;"
