@@ -100,13 +100,16 @@ class UnescapeHTMLSpecialCharsTests: XCTestCase {
             8969, 8970, 8971, 9001, 9002, 9674, 9824, 9827, 9829, 9830
         ]
         
-        let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: chars.count)
-        defer { buffer.deallocate(capacity: chars.count) }
+        let s = string.unescapeHTML
+        
         for i in 0..<chars.count {
-            (buffer + i).pointee = chars[i]
+            let buffer = UnsafeMutablePointer<unichar>.allocate(capacity: 1)
+            defer { buffer.deallocate(capacity: chars.count) }
+            buffer.pointee = chars[i]
+            guard let testString = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) else { XCTFail(); return }
+            XCTAssert(testString == (s as NSString).substring(with: NSMakeRange(i,1)), "\(chars[i])=>\((s as NSString).substring(with: NSMakeRange(i,1)).unescapeHTML)")
         }
-        guard let testString = String(bytesNoCopy: buffer, length: MemoryLayout<unichar>.size * chars.count, encoding: String.Encoding.utf16LittleEndian, freeWhenDone: false) else { XCTFail(); return }
-        XCTAssert(string.unescapeHTML == testString)
+        
         XCTAssert("&#65;&#x42;&#X43;".unescapeHTML == "ABC", "HTML unescaping failed")
         XCTAssert("" == "", "HTML unescaping failed")
         XCTAssert("&#65;&Bang;&#X43;".unescapeHTML == "A&Bang;C", "HTML unescaping failed")
