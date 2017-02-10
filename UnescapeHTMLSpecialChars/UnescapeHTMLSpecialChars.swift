@@ -368,8 +368,7 @@ extension String {
                 if hexPrefixes.contains(char2) {
                     // Hex escape squences &#xa3;
                     if f {
-//                        character = hexStream2UnicodeChars2(array: buffer[begin + 3..<semicolonIndex], length: (begin + 3..<semicolonIndex).count)
-                        character = hexStream2UnicodeChars(utf16Storage: buffer[begin + 3..<semicolonIndex], length: (begin + 3..<semicolonIndex).count)
+                        character = hexStream2UnicodeChars(utf16Storage: buffer[begin + 3..<semicolonIndex])
                     } else {
                         let hexString = String(utf16Storage: buffer[begin + 3..<semicolonIndex])
                         character = unichar(hexString, radix: 16)
@@ -416,26 +415,29 @@ extension Array: ContiguousStorage {}
 extension ArraySlice: ContiguousStorage {}
 extension ContiguousArray: ContiguousStorage {}
 
-private func hexStream2UnicodeChars2(array: [unichar], length: Int) -> unichar? {
-    return nil
+private func hexStream2UnicodeChars2<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
+    return utf16Storage.withUnsafeBufferPointer {
+        var basis: [UInt16] = [1, 16, 256, 4096].prefix($0.count).map({$0})
+        return $0.reduce(0, { (r, v) -> UInt16 in
+            guard let b = basis.popLast() else { return 0 }
+            return r + b * v
+        })
+    }
 }
 
-private func hexStream2UnicodeChars<T>(utf16Storage: T, length: Int) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
+private func hexStream2UnicodeChars<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
     return utf16Storage.withUnsafeBufferPointer {
-        let unichars = $0.baseAddress!
+        guard let unichars = $0.baseAddress else { return nil }
+        guard $0.count <= 4 else { return nil }
         var u = UInt16(0)
-        if $0.count > 4 { return nil }
-        let basis: [UInt16] = [4096, 256, 16, 1]
+        let basis: [UInt16] = [1, 16, 256, 4096].prefix($0.count).reversed()
         for j in 0..<$0.count {
             if (48...57) ~= unichars[j] {
-                let v = basis[(4 - $0.count + j)] * (unichars[j] - 48)
-                u = u + v
+                u = u + basis[j] * (unichars[j] - 48)
             } else if (65...70) ~= unichars[j] {
-                let v = basis[(4 - $0.count + j)] * (unichars[j] - 65 + 10)
-                u = u + v
+                u = u + basis[j] * (unichars[j] - 65 + 10)
             } else if (97...102) ~= unichars[j] {
-                let v = basis[(4 - $0.count + j)] * (unichars[j] - 97 + 10)
-                u = u + v
+                u = u + basis[j] * (unichars[j] - 97 + 10)
             } else {
                 return nil
             }
@@ -446,25 +448,28 @@ private func hexStream2UnicodeChars<T>(utf16Storage: T, length: Int) -> unichar?
 
 private func decimalStream2UnicodeChars<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
     return utf16Storage.withUnsafeBufferPointer {
-        let unichars = $0.baseAddress!
-        var u = UInt16(0)
-        if $0.count > 5 { return nil }
-        let basis: [UInt16] = [10000, 1000, 100, 10, 1]
+        guard let unichars = $0.baseAddress else { return nil }
+        guard $0.count <= 5 else { return nil }
+        var u = UInt(0)
+        let basis: [UInt] = [1, 10, 100, 1000, 10000].prefix($0.count).reversed()
         for j in 0..<$0.count {
             if (48...57) ~= unichars[j] {
-                let v = basis[(4 - $0.count + j)] * (unichars[j] - 48)
-                u = u + v
+                u = u + basis[j] * (UInt(unichars[j]) - 48)
             } else {
                 return nil
             }
         }
-        return u
+        if u > UInt(UInt16.max) {
+            return nil
+        } else {
+            return UInt16(u)
+        }
     }
 }
 
 private func matchUnicodeChars<T>(utf16Storage: T) -> unichar? where T: ContiguousStorage, T.Iterator.Element == unichar {
     return utf16Storage.withUnsafeBufferPointer {
-        let unichars = $0.baseAddress!
+        guard let unichars = $0.baseAddress else { return nil }
         if let t = getTable(length: $0.count) {
             for i in 0..<t.count {
                 var match = true
