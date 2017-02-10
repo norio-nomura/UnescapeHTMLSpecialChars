@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		OBJ_29 /* UnescapeHTMLSpecialChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* UnescapeHTMLSpecialChars.swift */; };
+		OBJ_31 /* GTM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* GTM.framework */; };
+		OBJ_39 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* GTMNSString+HTML.m */; };
+		OBJ_46 /* UnescapeHTMLSpecialCharsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* UnescapeHTMLSpecialCharsTests.swift */; };
+		OBJ_48 /* GTM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* GTM.framework */; };
+		OBJ_49 /* UnescapeHTMLSpecialChars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* UnescapeHTMLSpecialChars.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6C0148CD1E4DB27A00A2EC15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_33;
+			remoteInfo = GTM;
+		};
+		6C0148CE1E4DB27A00A2EC15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_33;
+			remoteInfo = GTM;
+		};
+		6C0148CF1E4DB27A00A2EC15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_24;
+			remoteInfo = UnescapeHTMLSpecialChars;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		OBJ_12 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		OBJ_14 /* GTMDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		OBJ_15 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		OBJ_16 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = /Users/norio/github/UnescapeHTMLSpecialChars/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM/module.modulemap; sourceTree = "<group>"; };
+		OBJ_19 /* UnescapeHTMLSpecialCharsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnescapeHTMLSpecialCharsTests.swift; sourceTree = "<group>"; };
+		OBJ_21 /* UnescapeHTMLSpecialChars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnescapeHTMLSpecialChars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_22 /* GTM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_23 /* UnescapeHTMLSpecialCharsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = UnescapeHTMLSpecialCharsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_9 /* UnescapeHTMLSpecialChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnescapeHTMLSpecialChars.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_31 /* GTM.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_48 /* GTM.framework in Frameworks */,
+				OBJ_49 /* UnescapeHTMLSpecialChars.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		OBJ_10 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* src */,
+				OBJ_13 /* include */,
+			);
+			name = GTM;
+			path = Sources/GTM;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_11 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_12 /* GTMNSString+HTML.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		OBJ_13 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_14 /* GTMDefines.h */,
+				OBJ_15 /* GTMNSString+HTML.h */,
+				OBJ_16 /* module.modulemap */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		OBJ_17 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_18 /* UnescapeHTMLSpecialCharsTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_18 /* UnescapeHTMLSpecialCharsTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_19 /* UnescapeHTMLSpecialCharsTests.swift */,
+			);
+			name = UnescapeHTMLSpecialCharsTests;
+			path = Tests/UnescapeHTMLSpecialCharsTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_21 /* UnescapeHTMLSpecialChars.framework */,
+				OBJ_22 /* GTM.framework */,
+				OBJ_23 /* UnescapeHTMLSpecialCharsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_17 /* Tests */,
+				OBJ_20 /* Products */,
+			);
+			name = "";
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* UnescapeHTMLSpecialChars */,
+				OBJ_10 /* GTM */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* UnescapeHTMLSpecialChars */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* UnescapeHTMLSpecialChars.swift */,
+			);
+			name = UnescapeHTMLSpecialChars;
+			path = Sources/UnescapeHTMLSpecialChars;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		OBJ_24 /* UnescapeHTMLSpecialChars */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_25 /* Build configuration list for PBXNativeTarget "UnescapeHTMLSpecialChars" */;
+			buildPhases = (
+				OBJ_28 /* Sources */,
+				OBJ_30 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_32 /* PBXTargetDependency */,
+			);
+			name = UnescapeHTMLSpecialChars;
+			productName = UnescapeHTMLSpecialChars;
+			productReference = OBJ_21 /* UnescapeHTMLSpecialChars.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		OBJ_33 /* GTM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_34 /* Build configuration list for PBXNativeTarget "GTM" */;
+			buildPhases = (
+				OBJ_37 /* ShellScript */,
+				OBJ_38 /* Sources */,
+				OBJ_40 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GTM;
+			productName = GTM;
+			productReference = OBJ_22 /* GTM.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		OBJ_41 /* UnescapeHTMLSpecialCharsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_42 /* Build configuration list for PBXNativeTarget "UnescapeHTMLSpecialCharsTests" */;
+			buildPhases = (
+				OBJ_45 /* Sources */,
+				OBJ_47 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_50 /* PBXTargetDependency */,
+				OBJ_51 /* PBXTargetDependency */,
+			);
+			name = UnescapeHTMLSpecialCharsTests;
+			productName = UnescapeHTMLSpecialCharsTests;
+			productReference = OBJ_23 /* UnescapeHTMLSpecialCharsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "UnescapeHTMLSpecialChars" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_20 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				OBJ_24 /* UnescapeHTMLSpecialChars */,
+				OBJ_33 /* GTM */,
+				OBJ_41 /* UnescapeHTMLSpecialCharsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		OBJ_37 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p \"${PROJECT_TEMP_DIR}/SymlinkLibs\"\nln -sf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${PROJECT_TEMP_DIR}/SymlinkLibs/lib${EXECUTABLE_NAME}.dylib\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_29 /* UnescapeHTMLSpecialChars.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_39 /* GTMNSString+HTML.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_46 /* UnescapeHTMLSpecialCharsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_33 /* GTM */;
+			targetProxy = 6C0148CD1E4DB27A00A2EC15 /* PBXContainerItemProxy */;
+		};
+		OBJ_50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_33 /* GTM */;
+			targetProxy = 6C0148CE1E4DB27A00A2EC15 /* PBXContainerItemProxy */;
+		};
+		OBJ_51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_24 /* UnescapeHTMLSpecialChars */;
+			targetProxy = 6C0148CF1E4DB27A00A2EC15 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/GTM/include",
+					"$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM",
+				);
+				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/UnescapeHTMLSpecialChars_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = UnescapeHTMLSpecialChars;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = UnescapeHTMLSpecialChars;
+			};
+			name = Debug;
+		};
+		OBJ_27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/GTM/include",
+					"$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM",
+				);
+				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/UnescapeHTMLSpecialChars_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = UnescapeHTMLSpecialChars;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = UnescapeHTMLSpecialChars;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/GTM/include",
+				);
+				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/GTM_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GTM;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = GTM;
+			};
+			name = Debug;
+		};
+		OBJ_36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/GTM/include",
+				);
+				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/GTM_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = GTM;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = GTM;
+			};
+			name = Release;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+		OBJ_43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/GTM/include",
+					"$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM",
+				);
+				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/UnescapeHTMLSpecialCharsTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM/module.modulemap";
+				TARGET_NAME = UnescapeHTMLSpecialCharsTests;
+			};
+			name = Debug;
+		};
+		OBJ_44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/GTM/include",
+					"$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM",
+				);
+				INFOPLIST_FILE = UnescapeHTMLSpecialChars.xcodeproj/UnescapeHTMLSpecialCharsTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/UnescapeHTMLSpecialChars.xcodeproj/GeneratedModuleMap/GTM/module.modulemap";
+				TARGET_NAME = UnescapeHTMLSpecialCharsTests;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_2 /* Build configuration list for PBXProject "UnescapeHTMLSpecialChars" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_25 /* Build configuration list for PBXNativeTarget "UnescapeHTMLSpecialChars" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_26 /* Debug */,
+				OBJ_27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_34 /* Build configuration list for PBXNativeTarget "GTM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_35 /* Debug */,
+				OBJ_36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_42 /* Build configuration list for PBXNativeTarget "UnescapeHTMLSpecialCharsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_43 /* Debug */,
+				OBJ_44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}

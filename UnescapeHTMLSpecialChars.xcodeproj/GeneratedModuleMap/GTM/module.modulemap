@@ -1,0 +1,4 @@
+module GTM {
+    umbrella "/Users/norio/github/UnescapeHTMLSpecialChars/Sources/GTM/include"
+    export *
+}
