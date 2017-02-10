@@ -119,6 +119,7 @@ let unicodeHTMLEscapeMapNameLength_4: [HTMLEscapeMap] = [
     HTMLEscapeMap("real", 8476, "ℜ", [114, 101, 97, 108]),
     HTMLEscapeMap("larr", 8592, "←", [108, 97, 114, 114]),
     HTMLEscapeMap("uarr", 8593, "↑", [117, 97, 114, 114]),
+    HTMLEscapeMap("rarr", 8594, "→", [114, 97, 114, 114]),
     HTMLEscapeMap("darr", 8595, "↓", [100, 97, 114, 114]),
     HTMLEscapeMap("harr", 8596, "↔", [104, 97, 114, 114]),
     HTMLEscapeMap("lArr", 8656, "⇐", [108, 65, 114, 114]),
